@@ -1,0 +1,26 @@
+{
+  "name": "back-end-rebecca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FBW5-Hamburg/back-end-rebecca.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FBW5-Hamburg/back-end-rebecca/issues"
+  },
+  "homepage": "https://github.com/FBW5-Hamburg/back-end-rebecca#readme",
+  "dependencies": {
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28",
+    "password-hash": "^1.2.2"
+  }
+}
