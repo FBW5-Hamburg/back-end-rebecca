@@ -61,13 +61,13 @@
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
 						<span class="label-input100">Password</span>
-						<input class="input100" type="text" name="pass" id="password" placeholder="*************">
+						<input class="input100" type="password" name="pass" id="password" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
 						<span class="label-input100">Repeat Password</span>
-						<input class="input100" type="text" name="repeat-pass" id="repeat-pass" placeholder="*************">
+						<input class="input100" type="password" name="repeat-pass" id="repeat-pass" placeholder="*************">
 						<span class="focus-input100"></span>
 					</div>
 
@@ -131,7 +131,8 @@
                 //console.log(submitBtn);
           const nameInp = document.querySelector('#name')
           const passwordInp = document.querySelector('#password')
-          const repasswordInp = document.querySelector('#repeat-pass')
+		  const repasswordInp = document.querySelector('#repeat-pass')
+		  const usernameInp = document.querySelector('#username')
           const emailInp = document.querySelector('#email')
           const checkInp = document.querySelector('#checkBtn')
           const formElement = document.querySelector('#signUp')
@@ -141,24 +142,24 @@
                 check: true,
                 message: ''
             }
-            if (!nameInput.value.trim() ) {
+            if (!nameInp.value.trim() ) {
                 checkValidation.check = false
                 checkValidation.message = 'Name is empty \n'
             }
 
-            if (!emailInput.value.trim() ) {
+            if (!emailInp.value.trim() ) {
                 checkValidation.check = false
                 checkValidation.message += 'Email is empty \n'
             }
-            if (!passwordInput.value ) {
+            if (!passwordInp.value ) {
                 checkValidation.check = false
                 checkValidation.message += 'Password is empty \n'
             }
-            if (passwordInput.value !== repasswordInput.value ) {
+            if (passwordInp.value !== repasswordInput.value ) {
                 checkValidation.check = false
                 checkValidation.message += 'Password does not match the repassword \n'
             }
-            if (!checkInput.checked) {
+            if (!checkInp.checked) {
                 checkValidation.check = false
                 checkValidation.message += 'you have to agree to terms of usage \n'
             }
