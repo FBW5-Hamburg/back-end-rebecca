@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const passwordHash = require('password-hash')
 
 
-const connectionString = 'mongodb+srv://project:qwer123@cluster0.lh6tv.mongodb.net/nodejs?retryWrites=true&w=majority'
+//const connectionString = 'mongodb+srv://project:qwer123@cluster0.lh6tv.mongodb.net/nodejs?retryWrites=true&w=majority'
 
 
 //creating schema for users
