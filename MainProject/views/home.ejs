@@ -46,9 +46,9 @@
                 <a class="dropdown-item" href="checkout.html">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="about.html" id="about-navigation" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="#" id="contact-navigation" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
 	        </ul>
@@ -65,7 +65,7 @@
 	          <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
 	            <div class="col-md-12 ftco-animate text-center">
-	              <h1 class="mb-2">We serve Fresh Vegestables &amp; Fruits</h1>
+	              <h1 class="mb-2">We serve Fresh Vegetables &amp; Fruits</h1>
 	              <h2 class="subheading mb-4">We deliver organic vegetables &amp; fruits</h2>
 	              <p><a href="#" class="btn btn-primary">View Details</a></p>
 	            </div>
@@ -669,6 +669,17 @@
 		  e.preventDefault();
 		  window.location = '/home'
 	  })
+	  
+	document.querySelector('#about-navigation').addEventListener('click', e => {
+		console.log(1)
+		e.preventDefault();
+		window.location = '/about'
+	})
+	document.querySelector('#contact-navigation').addEventListener('click', e => {
+		console.log(1)
+		e.preventDefault();
+		window.location = '/contact'
+	})
   </script>
   
   </body>

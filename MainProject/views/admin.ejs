@@ -71,42 +71,64 @@
 
     <section class="ftco-section contact-section bg-light">
       <div class="container">
-      	<div class="row d-flex mb-5 contact-info">
-          <div class="w-100"></div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-	          </div>
-          </div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-	          </div>
-          </div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-	          </div>
-          </div>
-          <div class="col-md-3 d-flex">
-          	<div class="info bg-white p-4">
-	            <p><span>Website</span> <a href="#">yoursite.com</a></p>
-	          </div>
-          </div>
-        </div>
-        <div class="row block-9">
-          <div class="col-md-6 order-md-last d-flex">
-            <div class="form-group">
-              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-            </div>
+ 
+        <div class="row ">
+          <div class="col-sm">
+            <button type="button" id="add-item" class="btn btn-success"
+            data-toggle="modal" data-target="#addModal"
+            >Add Item</button>         
           </div>
 
-          <div class="col-md-6 d-flex">
-          	<div id="map" class="bg-white"></div>
+          <div class="col-sm">
+            <button type="button" id="remove-item" class="btn btn-success"
+            data-toggle="modal" data-target="#removeModal"
+            >Remove Item</button>  
           </div>
+
+          <div class="col-sm">
+            <button type="button" id="edit-item" class="btn btn-success"
+            data-toggle="modal" data-target="#editModal"
+            >Edit Item</button>  
+          </div>
+
+  
         </div>
       </div>
     </section>
+
+    <div class="modal"        id="addModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" class="form-control" id="add-item-name" placeholder="Item name">
+            </div>
+
+            <div class="form-group">
+              <input type="number" class="form-control" id="add-item-price" placeholder="Item ">
+            </div>
+
+            <div class="form-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="add-item-image"
+                  aria-describedby="item-file"      accept="image/x-png,image/gif,image/jpeg">
+                <label class="custom-file-label" for="item-file">Choose file</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id ="add-save-item"class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -190,6 +212,69 @@
 
   
   <%- include('partial/htmljs')%>
+  <script>
+    document.querySelector('#add-save-item').addEventListener('click', e => {
+      e.preventDefault();
+
+      var itemname = document.querySelector('#add-item-name').value.trim();
+          var itemprice = document.querySelector('#add-item-price').value.trim();
+          const itemimage = document.querySelector('#add-item-image').files
+
+          if (!!useremail && !!userpassword && itemimage && itemimage.length >0) {
+
+            
+            // creating object to be sent
+            const sendObj = {
+              itemname,
+              itemprice
+            }
+
+            // sending data using fetch
+            fetch('/add-item', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(sendObj)
+            }).then(response => {
+              if (response.status == 200) {
+                response.json().then(data => {
+                
+
+                  switch (data) {
+                    case 1:
+                    window.alert('Item has been created')
+                      console.log(data)
+                      break;
+                      case 2:
+                      window.alert('An error occured please try again')
+                      
+                      console.log(data)
+                      break;
+                    case 3:
+                      window.alert('You have been logged out')
+                      //showModal(true, "missing entries", "you miss some entries or password already in use..")
+                      console.log(data)
+
+                  }
+                }).catch(error => {
+                 // console.log(error);
+                 window.alert('please contact the Administrator')
+                  //showModal(true, "error on getting data", 'please contact the Administrator')
+
+                });
+              }
+            }).catch(error => {
+             // console.log(error);
+             window.alert('error on getting data')
+              //showModal(true, "error on getting data")
+            })
+          } else {
+            window.alert('you miss some entries or your password does not match')
+          }
+    });
+    
+  </script>
     
   </body>
 </html>

@@ -92,6 +92,7 @@
 
             <div class="form-group">
               <input type="submit" value="Submit" id="submit-login" class="btn btn-primary py-3 px-5">
+  
             </div>
           </form>
 
@@ -199,12 +200,13 @@
           var userpassword = document.querySelector('#user-password').value.trim();
 
           if (!!useremail && !!userpassword) {
+            // creating object to be sent
             const sendObj = {
               useremail,
               userpassword
             }
 
-            // send data using fetch
+            // sending data using fetch
             fetch('/admin-login', {
               method: 'POST',
               headers: {
@@ -214,35 +216,34 @@
             }).then(response => {
               if (response.status == 200) {
                 response.json().then(data => {
-                  console.log(data)
+                
 
                   switch (data) {
                     case 1:
                       window.location = '/admin'
-
+                      console.log(data)
                       break;
                     case 2:
-                      showModal(true, "missing entries", "you miss some entries or password already in use..")
-                      break;
-                    case 3:
-                      showModal(true, "Login Error", "This email already exist...")
-                      break;
-                    case 4:
-                      showModal(true, "Server Error", "something unexpected happen...")
-                      break;
+                      window.alert('Please check your login details')
+                      //showModal(true, "missing entries", "you miss some entries or password already in use..")
+                      console.log(data)
+
                   }
                 }).catch(error => {
-                  console.log(error);
-                  showModal(true, "error on getting data", 'please contact the Administrator')
+                 // console.log(error);
+                 window.alert('please contact the Administrator')
+                  //showModal(true, "error on getting data", 'please contact the Administrator')
 
                 });
               }
             }).catch(error => {
-              console.log(error);
-              showModal(true, "error on getting data")
+             // console.log(error);
+             window.alert('error on getting data')
+              //showModal(true, "error on getting data")
             })
           } else {
-            showModal(true, "missing entries", " you miss some entries or your password does not match")
+            window.alert('you miss some entries or your password does not match')
+            //showModal(true, "missing entries", " you miss some entries or your password does not match")
           }
     });
   </script>
