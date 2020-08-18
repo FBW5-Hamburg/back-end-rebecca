@@ -130,6 +130,31 @@
       </div>
     </div>
 
+
+    <div class="modal"        id="removeModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Remove item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" class="form-control" id="remove-item-name" placeholder="Item name">
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" id ="remove-save-item"class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <footer class="ftco-footer ftco-section">
       <div class="container">
       	<div class="row">
@@ -220,9 +245,20 @@
           var itemprice = document.querySelector('#add-item-price').value.trim();
           const itemimage = document.querySelector('#add-item-image').files
 
-          if (!!useremail && !!userpassword && itemimage && itemimage.length >0) {
+          if (!!itemprice && itemimage && itemimage.length >0) {
+           
+            //collect the data to be sent to the server side
+            const fd = new FormData()
 
-            
+            fd.append('itemname' ,itemname)
+            fd.append('itemprice' ,itemprice)
+          
+                // add image to fd
+                for (let i = 0; i < itemimage.length; i++) {
+                    fd.append('itemimage' + i, itemimage[i])
+                    
+                }
+
             // creating object to be sent
             const sendObj = {
               itemname,
@@ -232,10 +268,8 @@
             // sending data using fetch
             fetch('/add-item', {
               method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(sendObj)
+   
+              body: fd
             }).then(response => {
               if (response.status == 200) {
                 response.json().then(data => {
@@ -274,6 +308,62 @@
           }
     });
     
+  
+    document.querySelector('#remove-save-item').addEventListener('click', e => {
+      e.preventDefault();
+
+      var itemname = document.querySelector('#remove-item-name').value.trim();
+
+
+          if (itemname) {
+           
+            //collect the data to be sent to the server side
+            const fd = new FormData()
+
+            fd.append('itemname' ,itemname)
+          
+
+            // sending data using fetch
+            fetch('/delete-item', {
+              method: 'POST',
+   
+              body: fd
+            }).then(response => {
+              if (response.status == 200) {
+                response.json().then(data => {
+                
+
+                  switch (data) {
+                    case 1:
+                    window.alert('Item has been deleted')
+                      break;
+                      case 2:
+                      window.alert('An error occured please try again')
+                      break;
+                    case 3:
+                      window.alert('Item name is incorrect')
+                      //showModal(true, "missing entries", "you miss some entries or password already in use..")
+                      console.log(data)
+
+                  }
+                }).catch(error => {
+                 // console.log(error);
+                 window.alert('please contact the Administrator')
+                  //showModal(true, "error on getting data", 'please contact the Administrator')
+
+                });
+              }
+            }).catch(error => {
+             // console.log(error);
+             window.alert('error on getting data')
+              //showModal(true, "error on getting data")
+            })
+          } else {
+            window.alert('you miss some entries or your password does not match')
+          }
+    });
+    
+  
   </script>
     
   </body>

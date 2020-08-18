@@ -5,6 +5,7 @@ const fileupload = require('express-fileupload')
 
 //include dataModule
 const dataModule = require('./modules/dbmongoose')
+const { toUnicode } = require('punycode')
 
 const app = express()
 
@@ -39,7 +40,10 @@ app.get('/about',(req, res) => {
 
 // get home
 app.get('/home',(req, res) => {
-    res.render('home')
+    dataModule.getAllItems().then(blaitems => {
+   
+        res.render('home', {items: blaitems})
+    })
 })
 
 // get contact
@@ -51,6 +55,7 @@ app.get('/contact',(req, res) => {
 app.get('/admin',(req, res) => {
     if(req.session.user) {
         res.render('admin')
+
     }else{
         res.redirect('admin-login')
     }
@@ -64,25 +69,29 @@ app.get('/admin-login',(req, res) => {
 
 // post admin login
 app.post('/admin-login',(req, res) => {
-    console.log(req.body)
 
-    if(req.body.useremail =="rebecca@gmail.com" && req.body.userpassword =="123456"){
-        console.log(1)
+    //TODO remove and uncomment
+    req.session.user= {email:req.body.useremail , password:req.body.userpassword }
+    res.json(1);
+
+    /*if(req.body.useremail =="rebecca@gmail.com" && req.body.userpassword =="123456"){
         req.session.user= {email:req.body.useremail , password:req.body.userpassword }
         res.json(1);
     }else{
-         console.log(2)
+
         req.session.user= null;
-        res.json(2);
-    }
+        res.json(1);
+    }*/
 
 })
 
 // post add item
 app.post('/add-item',(req, res) => {
-   if(!req.session.user){
+   
+ /*  if(!req.session.user){
     res.json(3);
-   }else if (req.files && Object.keys(req.files).length > 1 &&req.body.itemname && req.body.itemprice){
+   }else  */
+    if (req.files &&req.body.itemname && req.body.itemprice){
 
     const itemname = req.body.itemname
     const itemprice = req.body.itemprice
@@ -95,16 +104,33 @@ app.post('/add-item',(req, res) => {
         dataModule.addItem(itemname, itemprice,  imgs).then(() => {
             res.json(1)
         }).catch(error => {
-
+            console.log(error)
                 res.json(2)
             
         })
     
 }else{
-    res.json(2)
+    res.json(4)
 }
 
 })
+
+
+app.post('/delete-item',(req, res) => {
+
+    if (req.body.itemname ){
+        dataModule.deleteItem(req.body.itemname).then(() => {
+            res.json(1)
+        }).catch(error => {
+            console.log(error)
+                res.json(2)
+            
+        })
+    }else{
+        res.json(3)
+    }
+})
+
 
 app.listen(4500,() => {
     console.log('App listening on port 4500!')
