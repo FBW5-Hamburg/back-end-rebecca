@@ -132,9 +132,9 @@ function deleteItem(itemname){
         
         
         
-                            //connect().then(() => {
+                          
                                
-                                Items.deleteOne({itemname:item.itemimage}).then(() => {
+                                Items.deleteOne({itemname:item.itemname}).then(() => {
                                     
                                     resolve()
         
@@ -142,6 +142,7 @@ function deleteItem(itemname){
                                     
                                     reject(error)
                                 })
+                          
         
                 }else{
                     reject(new Error('can not find item' ))
