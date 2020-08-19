@@ -57,7 +57,7 @@
 	    </div>
 	  </nav>
     <!-- END nav -->
-
+ 
     <div class="hero-wrap hero-bread" style="background-image: url('images/bg_1.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -95,7 +95,7 @@
         </div>
       </div>
     </section>
-
+<!--Boostrap modal navbar-->
     <div class="modal"        id="addModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -111,7 +111,7 @@
             </div>
 
             <div class="form-group">
-              <input type="number" class="form-control" id="add-item-price" placeholder="Item ">
+              <input type="number" class="form-control" id="add-item-price" placeholder="Item price">
             </div>
 
             <div class="form-group">
@@ -241,8 +241,8 @@
     document.querySelector('#add-save-item').addEventListener('click', e => {
       e.preventDefault();
 
-      var itemname = document.querySelector('#add-item-name').value.trim();
-          var itemprice = document.querySelector('#add-item-price').value.trim();
+      const itemname = document.querySelector('#add-item-name').value.trim();
+          const itemprice = document.querySelector('#add-item-price').value.trim();
           const itemimage = document.querySelector('#add-item-image').files
 
           if (!!itemprice && itemimage && itemimage.length >0) {
@@ -312,7 +312,7 @@
     document.querySelector('#remove-save-item').addEventListener('click', e => {
       e.preventDefault();
 
-      var itemname = document.querySelector('#remove-item-name').value.trim();
+      const itemname = document.querySelector('#remove-item-name').value.trim();
 
 
           if (itemname) {

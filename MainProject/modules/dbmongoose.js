@@ -3,8 +3,8 @@ const passwordHash = require('password-hash')
 const fs = require('fs')
 
 
-//const connectionString = 'mongodb+srv://project:qwer123@cluster0.lh6tv.mongodb.net/nodejs?retryWrites=true&w=majority'
-const connectionString = 'mongodb+srv://reb:123456ab@cluster0.lh6tv.mongodb.net/test1?retryWrites=true&w=majority'
+const connectionString = 'mongodb+srv://projects:test1234@cluster0.lh6tv.mongodb.net/nodejs?retryWrites=true&w=majority'
+//const connectionString = 'mongodb+srv://reb:123456ab@cluster0.lh6tv.mongodb.net/test1?retryWrites=true&w=majority'
 
 // get schema object
 const Schema = mongoose.Schema

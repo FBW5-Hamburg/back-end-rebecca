@@ -212,8 +212,8 @@
   <script>
     document.querySelector('#submit-login').addEventListener('click', e => {
           console.log(1)
-          var useremail = document.querySelector('#user-email').value.trim();
-          var userpassword = document.querySelector('#user-password').value.trim();
+          const useremail = document.querySelector('#user-email').value.trim();
+          const userpassword = document.querySelector('#user-password').value.trim();
 
           if (!!useremail && !!userpassword) {
             // creating object to be sent
