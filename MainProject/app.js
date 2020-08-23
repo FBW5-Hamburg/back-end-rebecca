@@ -74,23 +74,25 @@ app.post('/admin-login',(req, res) => {
     req.session.user= {email:req.body.useremail , password:req.body.userpassword }
     res.json(1);
 
-    /*if(req.body.useremail =="rebecca@gmail.com" && req.body.userpassword =="123456"){
+/*
+    if(req.body.useremail =="rebecca@gmail.com" && req.body.userpassword =="123456"){
         req.session.user= {email:req.body.useremail , password:req.body.userpassword }
         res.json(1);
     }else{
 
         req.session.user= null;
         res.json(1);
-    }*/
+    }
+    */
 
 })
 
 // post add item
 app.post('/add-item',(req, res) => {
    
- /*  if(!req.session.user){
+   /*if(!req.session.user){
     res.json(3);
-   }else  */
+   }else */
     if (req.files &&req.body.itemname && req.body.itemprice){
 
     const itemname = req.body.itemname

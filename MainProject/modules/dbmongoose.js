@@ -175,24 +175,25 @@ function editItem(itemname, itemprice, itemimage){
             
                     Items.findOne({itemname:itemname}).then(item => {
                         
-                       
+                        (async() => {
                         if(item){
                           
+                            let imagenewname = null;
+                
                             if(!!itemimage[0]&&fs.existsSync('./public/uploadedfiles/'+ item.itemimage)){
          
                                 fs.unlinkSync('./public/uploadedfiles/' + item.itemimage)
         
                                 let ext = itemimage[0].name.substr(itemimage[0].name.lastIndexOf('.'))
                                 //setting the new image name
-                                let newName = itemname + ext
-                                itemimage[0].mv('./public/uploadedfiles/' + newName)
-                                console.log(newName)
+                                imagenewname= itemname + ext
+                                itemimage[0].mv('./public/uploadedfiles/' + imagenewname)
                             }
                           
-                            console.log(itemname)      
-                         Items.updateOne({itemname: itemname}, {
+                        await Items.updateOne({itemname: itemname}, {
                         
-                            itemprice: !!itemprice?itemprice:item.itemimage,
+                            itemprice: !!itemprice?itemprice:item.itemprice,
+                            itemimage: !!imagenewname?imagenewname:item.itemimage,
                             $inc: {__v: 1}
                     })
                     
@@ -202,6 +203,7 @@ function editItem(itemname, itemprice, itemimage){
                         }else{
                             reject(new Error('can not find item' ))
                         }
+                    })()
                     }).catch(error => {
                         reject(error)
                     })
