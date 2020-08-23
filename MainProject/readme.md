@@ -19,6 +19,6 @@ I am actually open to criticism,contributions or any ideas that would make this 
 
 
 ## Authors and acknowledgment
- ##### Rebecca Bukola Arowosoki
+ ### Rebecca Bukola Arowosoki
 
  I would like to appreciate as many that has contributed to this project in one way or the other and thanks for your comment.
