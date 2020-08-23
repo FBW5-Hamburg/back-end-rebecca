@@ -159,6 +159,67 @@ function deleteItem(itemname){
     })
 }
 
+function editItem(itemname, itemprice, itemimage){
+    return new Promise ((resolve, reject) => {
+
+    
+
+
+        try{
+
+
+            (async() => {
+        
+    
+                connect().then(()=> {
+            
+                    Items.findOne({itemname:itemname}).then(item => {
+                        
+                       
+                        if(item){
+                          
+                            if(!!itemimage[0]&&fs.existsSync('./public/uploadedfiles/'+ item.itemimage)){
+         
+                                fs.unlinkSync('./public/uploadedfiles/' + item.itemimage)
+        
+                                let ext = itemimage[0].name.substr(itemimage[0].name.lastIndexOf('.'))
+                                //setting the new image name
+                                let newName = itemname + ext
+                                itemimage[0].mv('./public/uploadedfiles/' + newName)
+                                console.log(newName)
+                            }
+                          
+                            console.log(itemname)      
+                         Items.updateOne({itemname: itemname}, {
+                        
+                            itemprice: !!itemprice?itemprice:item.itemimage,
+                            $inc: {__v: 1}
+                    })
+                    
+                resolve()
+                                  
+                
+                        }else{
+                            reject(new Error('can not find item' ))
+                        }
+                    }).catch(error => {
+                        reject(error)
+                    })
+                }).catch(error => {
+                    reject(error)
+                })
+                
+               
+    
+            })()
+        }catch(error) {
+            reject(error)
+        }
+
+
+    })
+}
+
 function getItem(itemname){
     return new Promise((resolve, reject) => {
         connect().then(()=> {
@@ -184,5 +245,6 @@ module.exports = {
     addItem,
     getAllItems,
     deleteItem,
-    getItem
+    getItem,
+    editItem
 }

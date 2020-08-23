@@ -131,6 +131,36 @@ app.post('/delete-item',(req, res) => {
     }
 })
 
+// post edit item
+app.post('/edit-item',(req, res) => {
+   
+    /*  if(!req.session.user){
+       res.json(3);
+      }else  */
+       if (req.files|| req.body.itemname || req.body.itemprice){
+   
+       const itemname = req.body.itemname
+       const itemprice = req.body.itemprice
+    
+   
+           const imgs = []
+           for (const key in req.files){
+                   imgs.push(req.files[key])
+           }
+           dataModule.editItem(itemname, itemprice,  imgs).then(() => {
+               res.json(1)
+           }).catch(error => {
+               console.log(error)
+                   res.json(2)
+               
+           })
+       
+   }else{
+       res.json(4)
+   }
+   
+   })
+
 
 app.listen(4500,() => {
     console.log('App listening on port 4500!')

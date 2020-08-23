@@ -154,6 +154,42 @@
       </div>
     </div>
 
+    <div class="modal"        id="editModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit item</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" class="form-control" id="edit-item-name" placeholder="Item name">
+            </div>
+
+            <div class="form-group">
+              <input type="number" class="form-control" id="edit-item-price" placeholder="Item price">
+            </div>
+
+            <div class="form-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="edit-item-image"
+                  aria-describedby="item-file"      accept="image/x-png,image/gif,image/jpeg">
+                <label class="custom-file-label" for="item-file">Choose file</label>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id ="edit-save-item"class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -363,6 +399,68 @@
           }
     });
     
+
+    document.querySelector('#edit-save-item').addEventListener('click', e => {
+      e.preventDefault();
+
+      const itemname = document.querySelector('#edit-item-name').value.trim();
+          const itemprice = document.querySelector('#edit-item-price').value.trim();
+          const itemimage = document.querySelector('#edit-item-image').files
+           
+            //collect the data to be sent to the server side
+            const fd = new FormData()
+
+            fd.append('itemname' ,itemname)
+            fd.append('itemprice' ,itemprice)
+          
+                // add image to fd
+                for (let i = 0; i < itemimage.length; i++) {
+                    fd.append('itemimage' + i, itemimage[i])
+                    
+                }
+
+
+            // sending data using fetch
+            fetch('/edit-item', {
+              method: 'POST',
+              body: fd
+            }).then(response => {
+              if (response.status == 200) {
+                response.json().then(data => {
+                
+
+                  switch (data) {
+                    case 1:
+                    window.alert('Item has been edited')
+                      console.log(data)
+                      break;
+                      case 2:
+                      window.alert('An error occured please try again')
+                      
+                      console.log(data)
+                      break;
+                    case 3:
+                      window.alert('You have been logged out')
+                      //showModal(true, "missing entries", "you miss some entries or password already in use..")
+                      console.log(data)
+
+                  }
+                }).catch(error => {
+                 // console.log(error);
+                 window.alert('please contact the Administrator')
+                  //showModal(true, "error on getting data", 'please contact the Administrator')
+
+                });
+              }
+            }).catch(error => {
+             // console.log(error);
+             window.alert('error on getting data')
+              //showModal(true, "error on getting data")
+            })
+        
+    });
+    
+  
   
   </script>
     
