@@ -1,29 +1,24 @@
-# Nodejs mongoose backend project
+# Nodejs/mongoose backend project
 
-Foobar is a Python library for dealing with word pluralization.
+Nodejs is designed to build scalable network applications and it is also a open source server environment which could be run on various platforms.
+while Mongoose is an object data modeling (ODM) library that provides a rigorous modeling environment for your data, enforcing structure as needed while still maintaining the flexibility that makes MongoDB powerful.
 
-## Installation
+### Why use mongoose and Nodejs:
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+MongoDB and Node.js are often used together because of their shared use of JavaScript and its object notation (JSON).
 
-```bash
-pip install foobar
-```
+## Description
+In this project am able to create a full-stack back-end file for an online vegetable  store. Which enable the admin to add, edit and remove respectively based on whatever need is require... and using Mongoose as a means of storing Data.
 
-## Usage
+## Road-map
+In future i would like to make this project much more functional and work more on my edit file, because there are other ideas on how to make it function well
 
-```python
-import foobar
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
+## Contribution
+I am actually open to criticism,contributions or any ideas that would make this project a complete success. You can write your suggestions,criticism on the comment session below. Thanks
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+## Authors and acknowledgment
+ ##### Rebecca Bukola Arowosoki
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+ I would like to appreciate as many that has contributed to this project in one way or the other and thanks for your comment.
