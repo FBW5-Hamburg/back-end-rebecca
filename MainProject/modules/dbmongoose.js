@@ -47,7 +47,7 @@ function connect(){
 }
 
 
-
+//adding item
 function addItem(itemname, itemprice, itemimage){
     return new Promise((resolve, reject) =>{
         connect().then(() => {
@@ -98,7 +98,7 @@ function addItem(itemname, itemprice, itemimage){
     
        
 }
-
+// getting all item
 function getAllItems(){
     return new Promise((resolve, reject) => {
         connect().then(() => {
@@ -114,7 +114,7 @@ function getAllItems(){
     })
 
 }
-
+// deleting item
 function deleteItem(itemname){
     return new Promise ((resolve, reject) => {
 
@@ -158,7 +158,7 @@ function deleteItem(itemname){
 
     })
 }
-
+// editing item
 function editItem(itemname, itemprice, itemimage){
     return new Promise ((resolve, reject) => {
 
@@ -221,7 +221,7 @@ function editItem(itemname, itemprice, itemimage){
 
     })
 }
-
+//getting all item by name
 function getItem(itemname){
     return new Promise((resolve, reject) => {
         connect().then(()=> {
