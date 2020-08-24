@@ -36,20 +36,11 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="shop.html">Shop</a>
-              	<a class="dropdown-item" href="wishlist.html">Wishlist</a>
-                <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
-                <a class="dropdown-item" href="checkout.html">Checkout</a>
-              </div>
-            </li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="#" id="home-navigation" class="nav-link">Home</a></li>
+	         <!--<li class="nav-item active"><a href="#" id="adminlogin-navigation" class="nav-link">Adminlogin</a></li>-->
+	          <li class="nav-item"><a href="#" id="about-navigation" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
+	          <li class="nav-item active"><a href="#" id="contact-navigation" class="nav-link">Contact</a></li>
 	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
 
 	        </ul>
@@ -62,7 +53,7 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Admin Page</span></p>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="#">Home</a></span> <span>Admin Page</span></p>
             <h1 class="mb-0 bread">Admin Page</h1>
           </div>
         </div>
@@ -273,6 +264,28 @@
 
   
   <%- include('partial/htmljs')%>
+  
+  <script>
+    document.querySelector('#home-navigation').addEventListener('click', e => {
+      e.preventDefault();
+      window.location = '/home'
+    })
+    document.querySelector('#adminlogin-navigation').addEventListener('click', e => {
+      e.preventDefault();
+      window.location = '/admin-login'
+    })
+  
+    document.querySelector('#about-navigation').addEventListener('click', e => {
+      e.preventDefault();
+      window.location = '/about'
+    })
+  
+    document.querySelector('#contact-navigation').addEventListener('click', e => {
+      e.preventDefault();
+      window.location = '/contact'
+    })
+  </script>
+  
   <script>
     // using fetch to add item
     document.querySelector('#add-save-item').addEventListener('click', e => {
