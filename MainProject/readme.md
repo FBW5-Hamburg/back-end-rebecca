@@ -9,6 +9,8 @@ MongoDB and Node.js are often used together because of their shared use of JavaS
 
 ## Description
 In this project am able to create a full-stack back-end file for an online vegetable  store. Which enable the admin to add, edit and remove respectively based on whatever need is require... and using Mongoose as a means of storing Data.
+### Other programing Language used:
+Ejs,Boostrap,Javascript,Html,Css
 
 ## Road-map
 In future i would like to make this project much more functional and work more on my edit file, because there are other ideas on how to make it function well
